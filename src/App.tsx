@@ -3,10 +3,11 @@ import './App.css'
 import { SummaryTable } from './features/summaryTable/SummaryTable'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <SummaryTable></SummaryTable>
+    <>
+        <SummaryTable></SummaryTable>
+    </>
   )
 }
 

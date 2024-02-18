@@ -1,0 +1,13 @@
+.StickyItemCaption {
+    position: sticky;
+    left: 0;
+    min-width: 100px;
+}
+
+.ItemCaption {
+    min-width: 100px;
+}
+
+.Value {
+    text-align: right;
+}
