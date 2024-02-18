@@ -1,13 +1,22 @@
 .StickyItemCaption {
     position: sticky;
     left: 0;
-    min-width: 100px;
+    min-width: 80px;
+    background-color: aliceblue;
 }
 
 .ItemCaption {
-    min-width: 100px;
+    text-align: center !important;
+    min-width: 80px;
 }
 
-.Value {
-    text-align: right;
+.ValueCell {
+    cursor: pointer;
+    text-align: right !important;
 }
+
+.ValueCell:hover {
+    background-color: WhiteSmoke;
+    border-radius: 12px;
+}
+

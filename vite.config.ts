@@ -10,7 +10,11 @@ const noAttr = () => {
             const scriptTagEnd = html.indexOf("</script>", scriptTagIndex) + "</script>".length;
             const scriptTag = html.substring(scriptTagIndex, scriptTagEnd);
             const rootTag = `<div id="root"></div>`;
-            const html2 = html.replace(scriptTag, "").replace(rootTag, `${rootTag}\n    ${scriptTag}`).replace(`type="module"`, "").replace(/crossorigin/g, "");
+            const html2 = html.replace(scriptTag, "")
+            .replace(rootTag, `${rootTag}\n    ${scriptTag}`)
+            .replace(`type="module"`, "")
+            .replace(/crossorigin/g, "");
+            
             return html2;
         }
     }

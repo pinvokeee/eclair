@@ -1,19 +1,31 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useSummaryTable } from "./hook/useSummaryTable"
+import { SummaryTableCell, SummaryTableRow, useEditor, } from "./hook/useEditor"
 import "./SummaryTable.css";
+import { useState } from "react";
 
-export const SummaryTable = () => {
+type Props = {
+    header: SummaryTableCell[],
+    body: SummaryTableRow[],
+    onValueClick?: (entryKey: string, monthDate: number) => void,
+}
 
-    const { generateTableData } = useSummaryTable();
+export const SummaryTable = (props: Props) => {
 
-    const { header, body } = generateTableData();
+    const { header, body, onValueClick } = props;
+
+    const handleValueClick = (entryKey?: string, monthDate?: number) => {
+        if (!entryKey || !monthDate) return;
+        onValueClick?.call(this, entryKey, monthDate);
+    }
 
     return <>
         <TableContainer>
             <Table>
                 <TableHead>
                     <TableRow>
-                        { header.map((h, i) => <TableCell className={i > 0 ? "ItemCaption" : "StickyItemCaption"} key={h.key}>{h.text}</TableCell>) }
+                        { header.map((h, i) => 
+                            <TableCell className={i > 0 ? "ItemCaption" : "StickyItemCaption"} key={h.cellKey}>{h.text}</TableCell>
+                        ) }
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -21,7 +33,16 @@ export const SummaryTable = () => {
                         body.map(row => {
                             return <TableRow key={row.key}>
                                 {
-                                    row.body.map((cell, i) => <TableCell className={i > 0 ? "Value" : "StickyItemCaption"} key={cell.key}>{cell.text}</TableCell>)
+                                    row.columns.map((column, i) => 
+                                    {
+                                        const props = {
+                                            className: i > 0 ? "ValueCell" : "StickyItemCaption",
+                                            key: column.cellKey,
+                                            onClick: () => handleValueClick(column.entryKey, column.month),
+                                        };
+
+                                        return <TableCell {...props}>{column.text}</TableCell>
+                                    })
                                 }
                             </TableRow>
                         })

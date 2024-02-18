@@ -175,7 +175,7 @@ export const calculate = () => {
 
     const calculateItem = (item: Item, items: ItemDicitonary, values: ItemValue[]) => {
         return calculateItemFromKey(item.key, items, values);
-    }    
+    }
 
     const calculateItemFromKey = (itemKey: string, items: ItemDicitonary, values: ItemValue[]) => {
 
