@@ -1,15 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 import { SummaryTable } from './features/summaryTable/SummaryTable'
-import { Editor } from './features/summaryTable/Editor'
+import { View } from './features/monitor/View'
 
 function App() {
-
-  return (
-    <>
-        <Editor></Editor>
-    </>
-  )
+  return (<><View></View></>)
 }
 
 export default App

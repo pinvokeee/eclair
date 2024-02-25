@@ -1,22 +1,69 @@
-.StickyItemCaption {
-    position: sticky;
-    left: 0;
-    min-width: 80px;
-    background-color: aliceblue;
-}
-
-.ItemCaption {
-    text-align: center !important;
-    min-width: 80px;
+.Cell {
+    padding: 6px;
+    min-width: 60px;
+    text-align: right;
+    cursor: default;
+    background-color: white;
 }
 
 .ValueCell {
-    cursor: pointer;
-    text-align: right !important;
+    padding: 6px;
+    width: 120px;
+    text-align: right;
+    cursor: default;
 }
 
 .ValueCell:hover {
-    background-color: WhiteSmoke;
-    border-radius: 12px;
+    background-color: blue;
 }
+
+.MonthCaption {
+    padding: 6px;
+    width: 120px;
+    text-align: center;
+    cursor: default;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.ItemNameCaption {
+    position: sticky;
+    left: 0;
+    top: 0;
+}
+
+.ItemNameColumn {
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.TableContainer {
+    /* display: grid;
+    grid-template-columns: auto 1fr; */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+
+
+.BodyContainer {
+    /* display: grid; */
+    /* grid-template-rows: auto 1fr; */
+}
+
+.TableBody {
+}
+
+/* .TableContainer {
+    overflow-x: auto;
+}
+
+.TableBody {
+    height: 100%;
+    overflow-y: auto;
+} */
 

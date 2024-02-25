@@ -1,0 +1,29 @@
+/* .Container {
+    padding: 20px;
+} */
+
+.ValueEditContainer {
+
+}
+
+.ValueEditRow {
+    
+    display: flex;
+    gap: 4px;
+}
+
+.ValueEditColumn {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    /* flex: 1;  */
+}
+
+.ValueEditColumn.flex2 {
+    /* flex: 2;  */
+}
+
+.ValueEditField {
+
+    /* width: 120px; */
+}

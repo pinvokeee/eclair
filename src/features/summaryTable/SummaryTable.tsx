@@ -1,54 +1,39 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { SummaryTableCell, SummaryTableRow, useEditor, } from "./hook/useEditor"
+import { Stack } from "@mui/material";
+import { CalculatedSection, Item, Section } from "../../common/core/types";
+import { useSummaryTable } from "./hook/useSummaryTable";
 import "./SummaryTable.css";
-import { useState } from "react";
+import { SummarySection } from "./SummarySection";
+import { TableItemNames } from "./TableItemNames";
+import { SectionColmuns } from "./SectionColmuns";
 
 type Props = {
-    header: SummaryTableCell[],
-    body: SummaryTableRow[],
-    onValueClick?: (entryKey: string, monthDate: number) => void,
+    items: Item[],
+    calculatedSections: CalculatedSection[],
+    onClickCell?: (section: Section, itemKey: string) => void,
 }
 
 export const SummaryTable = (props: Props) => {
 
-    const { header, body, onValueClick } = props;
+    const { calculatedSections, items } = useSummaryTable({ ...props });
+    const { onClickCell } = props;
 
-    const handleValueClick = (entryKey?: string, monthDate?: number) => {
-        if (!entryKey || !monthDate) return;
-        onValueClick?.call(this, entryKey, monthDate);
+    const handleClickCell = (section: Section, itemKey: string) => {
+        onClickCell?.call(undefined, section, itemKey);
     }
 
-    return <>
-        <TableContainer>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        { header.map((h, i) => 
-                            <TableCell className={i > 0 ? "ItemCaption" : "StickyItemCaption"} key={h.cellKey}>{h.text}</TableCell>
-                        ) }
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        body.map(row => {
-                            return <TableRow key={row.key}>
-                                {
-                                    row.columns.map((column, i) => 
-                                    {
-                                        const props = {
-                                            className: i > 0 ? "ValueCell" : "StickyItemCaption",
-                                            key: column.cellKey,
-                                            onClick: () => handleValueClick(column.entryKey, column.month),
-                                        };
+    return <div className="TableContainer">
+        <Stack direction={"row"} width={"fit-content"}>
+            <TableItemNames {...{items}}/>
+            <SectionColmuns {...{calculatedSections, onClickCell: handleClickCell}} />
+        </Stack>
+    </div>
+}
 
-                                        return <TableCell {...props}>{column.text}</TableCell>
-                                    })
-                                }
-                            </TableRow>
-                        })
-                    }
-                </TableBody>
-            </Table>
-        </TableContainer>
-    </>
+export const Header = (props: { dates: number[] }) => {
+
+    const monthTexts = props.dates.map(n => `${new Date(n).getMonth()+1}月`);
+
+    return <Stack direction={"row"}>
+        { monthTexts.map(text => <div key={`head_${text}`} className="MonthCaption">{text}</div>) }            
+    </Stack>
 }
