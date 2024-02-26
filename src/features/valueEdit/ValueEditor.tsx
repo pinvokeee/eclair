@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { ElementDicitonary, ItemDicitonary, Section, Element } from "../../common/core/types";
+import { ElementDicitonary, ItemDicitonary, Section, Element, Item } from "../../common/core/types";
 import { ValueRow } from "./ValueRow";
-// import "./ValueEditor.css";
+import "./styles.css";
 
 type Props = {
     section: Section,
-    itemKey: string,
+    item: Item,
+    sourceElements: Element[],
     items: ItemDicitonary,
     elements: ElementDicitonary,
 }
@@ -17,14 +18,18 @@ const types = {
 
 export const ValueEditor = (props: Props) => {
 
-    const { section, itemKey, elements } = { ...props };
+    const { section, item, elements, sourceElements } = { ...props };
     const [values, setValues] = useState(section.values.map(value => ({...value})));
 
-    const sourceElements = values.map(v => elements.get(v.elementKey)).filter((e): e is Element => e != undefined);
+    const sourceValues = sourceElements.map(el => values.filter(v => v.elementKey == el.key)).flat();
+
+    // const sourceElements = values.map(v => elements.get(v.elementKey)).filter((e): e is Element => e != undefined);
+
+    console.log(sourceElements);
 
     return <>
         {
-            values.map(elementValue => <ValueRow {...{elements, elementValue}}></ValueRow>)
+            sourceValues.map(elementValue => <ValueRow {...{elements, elementValue}}></ValueRow>)
         }
     </>
 }

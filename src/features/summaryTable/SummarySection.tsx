@@ -1,6 +1,6 @@
 import numeral from "numeral";
 import { CalculatedSection, Section } from "../../common/core/types";
-import "./SummaryTable.css";
+import "./styles.css";
 import { Stack } from "@mui/material";
 
 type Props = {

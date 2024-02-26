@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Section, ItemDicitonary, ElementDicitonary, Element } from "../../../common/core/types";
+import { Section, ItemDicitonary, ElementDicitonary, Element, Item } from "../../../common/core/types";
 import { projectData, itemsData, itemData } from "./sampledata";
 import { Statement } from "../../../common/core/statement";
 
@@ -13,17 +13,26 @@ export const useView = () => {
 
     const calculatedSections = statement.getCalculatedSectionAll();
 
-    const [selectedSectionValueSet, setSelected] = useState<{ section: Section, itemKey: string } | undefined>(undefined);
+    const [selectedSectionValueSet, setSelected] = useState<
+    {
+        section: Section, 
+        item: Item, 
+        sourceElements: Element[] 
+    } | undefined>(undefined);
 
     const onClickCell = (section: Section, itemKey: string) => {
-        setSelected({section, itemKey});
+
+        const item = items.get(itemKey);
+
+        if (item) {
+            const sourceElements: Element[] = statement.getSourceElements(item).flat();
+            setSelected({section, item, sourceElements});
+        }
     }
 
     const getSelected = () => {
         return selectedSectionValueSet;
     }
-
-    console.log(selectedSectionValueSet);
 
     return {
         items,

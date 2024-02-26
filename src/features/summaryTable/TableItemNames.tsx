@@ -1,6 +1,5 @@
 import { Stack } from "@mui/material";
-import { Item } from "../../common/core/types"
-
+import { Item } from "../../common/core/types";
 
 type Props = {
     items: Item[],

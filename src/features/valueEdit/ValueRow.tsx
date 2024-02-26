@@ -1,5 +1,5 @@
 import { ElementDicitonary, ElementValue } from "../../common/core/types"
-import "./style.css";
+import "./styles.css";
 
 type Props = {
     elementValue: ElementValue,

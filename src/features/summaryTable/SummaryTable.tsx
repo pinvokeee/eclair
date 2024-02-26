@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import { CalculatedSection, Item, Section } from "../../common/core/types";
 import { useSummaryTable } from "./hook/useSummaryTable";
-import "./SummaryTable.css";
+import "./styles.css";
 import { SummarySection } from "./SummarySection";
 import { TableItemNames } from "./TableItemNames";
 import { SectionColmuns } from "./SectionColmuns";

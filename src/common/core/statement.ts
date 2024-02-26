@@ -18,6 +18,10 @@ export class Statement {
         return this.store.items();
     }
 
+    getSourceElements(targetItem: Item) {
+        return this.store.getSourceElements(targetItem);
+    }
+
     getCalculatedSection(sectionIndex: number) {
 
         const values = this.sections[sectionIndex].values;

@@ -40,7 +40,7 @@ export class ItemStore {
      * @param parentKeys
      * @returns 
      */
-    private  getCompositElementKeys(targets: Target[], parentKeys: string[] = []) {
+    private getCompositElementKeys(targets: Target[], parentKeys: string[] = []) {
 
         const result: string[][] = [];
 

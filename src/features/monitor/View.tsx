@@ -17,13 +17,15 @@ export const View = () => {
 
     const selected = getSelected();
     const section = selected?.section;
-    const itemKey = selected?.itemKey;
-    const key = (section && itemKey) ? `${section.date}-${itemKey}` : "";
+    const item = selected?.item;
+    const sourceElements = selected?.sourceElements ?? [];
+
+    const key = (section && item) ? `${section.date}-${item.key}` : "";
 
     return <div className="Container">
         <SummaryTable {...summaryTableProps}></SummaryTable>
-        { (section && itemKey) && <Paper square>
-            <ValueEditor {...{key, section, itemKey, items, elements}}></ValueEditor>
+        { (section && item) && <Paper square>
+            <ValueEditor {...{key, section, item, items, elements, sourceElements}}></ValueEditor>
         </Paper> }
     </div>
 }
