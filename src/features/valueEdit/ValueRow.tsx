@@ -16,18 +16,23 @@ export const ValueRow = (props: Props) => {
     if (!element) return <></>;
 
     return <div className="ValueEditRow">
-        <div className="ValueEditColumn">{element?.name}</div>
-        <div className="ValueEditColumn">
+        <div className="ValueEditColumn ValueField1">
+            <div>
+                {element?.name}
+            </div>
+            </div>
+        <div className="ValueEditColumn ValueField2">
         <select>
             <option value="1">数量</option>
             <option value="2">直接入力</option>
         </select>
         </div>
-        <div className="ValueEditColumn flex2">
-            <input type="number" className="ValueEditField" value={value} />
+        <div className="ValueEditColumn ValueField3">
+            単価
         </div>
         <div className="ValueEditColumn">
-            <button>更新</button>
+            <input type="number" className="ValueEditField" value={value} />
         </div>
+
     </div>
 }

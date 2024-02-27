@@ -27,3 +27,22 @@
 
     /* width: 120px; */
 }
+
+@scope(.ValueEditRow) {
+
+
+    
+
+    .ValueField1 {
+        width: 30%;   
+    }
+
+    .ValueField2 {
+        width: 40%;   
+    }
+
+    .ValueField3 {
+        width: 30%;   
+    }
+
+}
