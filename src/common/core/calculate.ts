@@ -15,6 +15,7 @@ export class Calculate {
         if (type == "sub") return this.sub(values);
         if (type == "mul") return this.mul(values);
         if (type == "div") return this.div(values);
+        if (type == "raito") return this.raito(values);
 
         return 0;
     }
@@ -38,8 +39,15 @@ export class Calculate {
         return values[0] / values[1];
     }
 
+    private raito(values: number[]) {
+        if (values.length < 2) return this.sum(values);
+        return values[0] / values[1];
+    }
+
     calcElements(elements: Element[], values: ElementValue[]) {
         
+        // console.log(elements);
+
         return this.sum(elements.map(el => {
             const targetValues = values.filter(v => v.elementKey == el.key);
             return targetValues.reduce((currentValue, valueItem) => currentValue + this.calcElement(el, valueItem), 0)

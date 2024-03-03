@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ElementDicitonary, ItemDicitonary, Section, Element, Item } from "../../common/core/types";
+import { ElementDicitonary, ItemDicitonary, Section, Element, Item, ElementValue } from "../../common/core/types";
 import { ValueRow } from "./ValueRow";
 import "./styles.css";
+import { Calculate } from "../../common/core/calculate";
 
 type Props = {
     section: Section,
@@ -9,6 +10,8 @@ type Props = {
     sourceElements: Element[],
     items: ItemDicitonary,
     elements: ElementDicitonary,
+
+    onChange?: (newSection: Section) => void,
 }
 
 const types = {
@@ -18,18 +21,28 @@ const types = {
 
 export const ValueEditor = (props: Props) => {
 
-    const { section, item, elements, sourceElements } = { ...props };
+    const calc = new Calculate();
+    
+    const { section, item, elements, sourceElements, onChange } = { ...props };
     const [values, setValues] = useState(section.values.map(value => ({...value})));
 
     const sourceValues = sourceElements.map(el => values.filter(v => v.elementKey == el.key)).flat();
 
-    // const sourceElements = values.map(v => elements.get(v.elementKey)).filter((e): e is Element => e != undefined);
+    // console.log(values, sourceElements);
 
-    console.log(sourceElements);
+    const handleValueChange = (newValue: ElementValue) => {
+        const a = values.map(v => v.key == newValue.key ? newValue : v);
+        setValues(a);        
+        const newSection = {...section, values: a};
+        onChange?.call(this, newSection);
+    }
 
-    return <>
+    // console.log(sourceValues, values);
+
+    return <div className="ValueEditContainer">
         {
-            sourceValues.map(elementValue => <ValueRow {...{elements, elementValue}}></ValueRow>)
+            sourceValues.map(elementValue => 
+            <ValueRow {...{elements, elementValue, onChange: handleValueChange}}></ValueRow>)
         }
-    </>
+    </div>
 }

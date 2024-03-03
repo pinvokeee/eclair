@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Section, ItemDicitonary, ElementDicitonary, Element, Item } from "../../../common/core/types";
+import { Section, ItemDicitonary, ElementDicitonary, Element, Item, ElementValue } from "../../../common/core/types";
 import { projectData, itemsData, itemData } from "./sampledata";
 import { Statement } from "../../../common/core/statement";
 
@@ -30,6 +30,12 @@ export const useView = () => {
         }
     }
 
+    const onChange = (section: Section) => {
+        const newsections = sections.map(sec => sec.date == section.date ? section : sec);
+        console.log(newsections);
+        setSections(newsections);
+    }
+
     const getSelected = () => {
         return selectedSectionValueSet;
     }
@@ -39,6 +45,7 @@ export const useView = () => {
         elements,
         calculatedSections,
         onClickCell,
+        onChange,
         getSelected,
     }
 }

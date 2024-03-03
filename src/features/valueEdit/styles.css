@@ -3,46 +3,53 @@
 } */
 
 .ValueEditContainer {
-
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .ValueEditRow {
-    
     display: flex;
-    gap: 4px;
-}
+    gap: 12px;
 
-.ValueEditColumn {
-    display: flex;
-    align-items: center;
-    padding: 6px;
-    /* flex: 1;  */
-}
+    .Name {
+        width: 120px;
+        display: flex;
+        align-items: center;
+    }
 
-.ValueEditColumn.flex2 {
-    /* flex: 2;  */
-}
+    .Type {
+        width: 120px;
+    }
 
-.ValueEditField {
+    .Label {
+        display: flex;
+        align-items: center;
+        width: 10px;
+    }
 
-    /* width: 120px; */
+    .Total {
+        display: flex;
+        align-items: center;
+    }
+
+    .UnitPrice {
+        display: flex;
+        align-items: center;
+        width: 120px;
+    }
+
+    .ActualSpace {
+        width: calc(120px + 10px + 12px);
+    }
+
+    .Value {
+        width: 80px;
+    }
 }
 
 @scope(.ValueEditRow) {
 
-
-    
-
-    .ValueField1 {
-        width: 30%;   
-    }
-
-    .ValueField2 {
-        width: 40%;   
-    }
-
-    .ValueField3 {
-        width: 30%;   
-    }
 
 }

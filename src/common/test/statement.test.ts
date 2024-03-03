@@ -234,7 +234,7 @@ it("calcTest", () => {
 
     const statement = new Statement(entries, ds, sections);
     
-    console.log(statement.getCalculatedItems(0));
+    // console.log(statement.getCalculatedItems(0));
 
 
 })

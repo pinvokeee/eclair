@@ -7,7 +7,7 @@ import { Button, Drawer, Paper } from "@mui/material";
 
 export const View = () => {
 
-    const { calculatedSections, items, elements, getSelected, onClickCell } = useView();
+    const { calculatedSections, items, elements, getSelected, onClickCell, onChange } = useView();
 
     const summaryTableProps = {
         items: Array.from(items.values()),
@@ -25,7 +25,7 @@ export const View = () => {
     return <div className="Container">
         <SummaryTable {...summaryTableProps}></SummaryTable>
         { (section && item) && <Paper square>
-            <ValueEditor {...{key, section, item, items, elements, sourceElements}}></ValueEditor>
+            <ValueEditor {...{key, section, item, items, elements, sourceElements, onChange}}></ValueEditor>
         </Paper> }
     </div>
 }

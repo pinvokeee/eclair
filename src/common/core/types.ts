@@ -14,7 +14,7 @@ export type Category = "revenue" | "cost";
 /**
  * 項目の計算種別（勘定項目の合算・項目の差分、項目の比率、比率をかけて出した値
  */
-export type CalculateType = "sum" | "sub" | "mul" | "div";
+export type CalculateType = "sum" | "sub" | "mul" | "div" | "raito";
 
 /**
  * 項目の計算種別（勘定項目の合算・項目の差分、項目の比率、比率をかけて出した値
@@ -42,7 +42,7 @@ export type ElementValue = {
     key: string,
 
     /**
-     * 数量か実数値か
+     * 数値タイプ（数量 OR 実数値)
      */
     valueType: ValueType,
 
@@ -122,16 +122,8 @@ export type Item = {
      */
     formatLiteral?: string,
 
-    /**
-     * 内訳項目のキー
-     */
-    source?: Target[],
-
-    duplicate_sumItemKeys?: string[],
-
-    duplicate_numItemKey?: string,
-    duplicate_denItemKey?: string,
-
+    formulaText: string,
+    
     /**
      * コメント
      */

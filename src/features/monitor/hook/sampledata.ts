@@ -6,81 +6,70 @@ export const itemData: Item[] = [
         name: "TS",
         category: "revenue",
         calculateType: "sum",
-        source: [
-            {
-                key: "SV1",
-                type: "Element",
-            },
-            {
-                key: "SV2",
-                type: "Element",
-            },
-            {
-                key: "LD1",
-                type: "Element",
-            },
-            {
-                key: "LD2",
-                type: "Element",
-            },
-            {
-                key: "CM1",
-                type: "Element",
-            },
-            {
-                key: "CM2",
-                type: "Element",
-            }
-        ],
-
+        formulaText: "[SV1] + [SV2] + [LD1] + [LD2] + [CM1] + [CM2]",
         formatLiteral: "0,0",
     },
 
-    {
-        key: "COST",
-        name: "COST",
-        category: "cost",
-        calculateType: "sum",
-        source: [
-            {
-                key: "COST_SV",
-                type: "Element",
-            },
-            {
-                key: "COST_SV_ZA",
-                type: "Element",
-            },
-            {
-                key: "COST_CM",
-                type: "Element",
-            },
-            {
-                key: "YUKYU",
-                type: "Element",
-            }
-        ],
+    // {
+    //     key: "COST",
+    //     name: "COST",
+    //     category: "cost",
+    //     calculateType: "sum",
+    //     source: [
+    //         {
+    //             key: "COST_SV",
+    //             type: "Element",
+    //         },
+    //         {
+    //             key: "COST_SV_ZA",
+    //             type: "Element",
+    //         },
+    //         {
+    //             key: "COST_CM",
+    //             type: "Element",
+    //         },
+    //         {
+    //             key: "YUKYU",
+    //             type: "Element",
+    //         }
+    //     ],
 
-        formatLiteral: "0,0",
-    },
+    //     formatLiteral: "0,0",
+    // },
 
-    {
-        key: "GP",
-        name: "GP",
-        category: "cost",
-        calculateType: "div",
-        source: [
-            {
-                key: "COST",
-                type: "Item",
-            },
-            {
-                key: "TS",
-                type: "Item",
-            },
-        ],
+    // {
+    //     key: "URI_SO",
+    //     name: "売上総利益",
+    //     category: "cost",
+    //     calculateType: "sub",
+    //     source: [
+    //         {
+    //             key: "TS",
+    //             type: "Item",
+    //         },
+    //         {
+    //             key: "COST",
+    //             type: "Item",
+    //         },
+    //     ],
 
-        formatLiteral: "0.00%",
-    },
+    //     formatLiteral: "0,0",
+    // },
+
+    // {
+    //     key: "GP%",
+    //     name: "GP%",
+    //     category: "cost",
+    //     calculateType: "sum",
+    //     source: [
+    //         {
+    //             key: "URI_SO",
+    //             type: "Item",
+    //         },
+    //     ],
+
+    //     formatLiteral: "0",
+    // },
 
 ]
 
@@ -330,7 +319,7 @@ export const valuesData2: ElementValue[] = [
     },
 
     {
-        key: "COST_SV",
+        key: "COST_SV_1",
         elementKey: "COST_SV_ZA",
         value: 20,
         valueType: "Quantity",
@@ -341,7 +330,7 @@ export const valuesData2: ElementValue[] = [
         elementKey: "YUKYU",
         value: 50000,
         valueType: "Actual"
-    }
+    },
 ];
 
 
@@ -353,78 +342,78 @@ export const projectData: Section[] = [
         ]
     },
 
-    {
-        date: new Date("2024/4/1").getTime(),
-        values: [
-        ]
-    },
+    // {
+    //     date: new Date("2024/4/1").getTime(),
+    //     values: [
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/5/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2024/5/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/6/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2024/6/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/7/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2024/7/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/8/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2024/8/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/9/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2024/9/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/10/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2024/10/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/11/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2024/11/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2024/12/1").getTime(),
-        values: [
-        ]
-    },
+    // {
+    //     date: new Date("2024/12/1").getTime(),
+    //     values: [
+    //     ]
+    // },
 
-    {
-        date: new Date("2025/01/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2025/01/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 
-    {
-        date: new Date("2025/02/1").getTime(),
-        values: [
-            ...valuesData2
-        ]
-    },
+    // {
+    //     date: new Date("2025/02/1").getTime(),
+    //     values: [
+    //         ...valuesData2
+    //     ]
+    // },
 ]

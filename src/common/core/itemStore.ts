@@ -1,4 +1,4 @@
-import { Element, ElementDicitonary, ElementValue, Item as string, ItemDicitonary, CalculatedEntry, Section, Target, Item } from "./types";
+import { Element, ElementDicitonary, ElementValue, Item as string, ItemDicitonary, CalculatedEntry, Section, Target, Item, CalculateType } from "./types";
 
 /**
  * 項目・要素を管理・取り出し用クラス（計算はしない）
@@ -31,9 +31,82 @@ export class ItemStore {
         // const source = this.items().get(item)?.source ?? [];
         const source = item.source ?? [];
         const elementKeys = this.getCompositElementKeys(source);
+        const elementKeys2 = this.getCompositElementKeys2(item.calculateType, source);
+
+        console.log(item.name, elementKeys2);
+
+
         return elementKeys;
     }
+
+    private getCompositElementKeys2(calcType: CalculateType, targets: Target[], parentKeys: string[] = []) {
+
+        const a : { calcType: CalculateType, elements: string[] }[] = [];
+        // const result: string[][] = [];
+        const elements_arr: string[] = [];
+
+        for (const t of targets) {
+            const { elements, result } = this.c(calcType, t, parentKeys);
+            elements_arr.push(...elements);
+
+            a.push(...result);
+        }
+
+        a.push({ calcType, elements: elements_arr });
+
+        // console.log("-----");
+        // // console.log(elements_arr);
+
+        // console.log(a);
+
+        return a;
+    }
     
+    private c(calcType: CalculateType, t: Target, parentKeys: string[] = []) {
+
+        const result: { calcType: CalculateType, elements: string[] }[] = [];
+        const elements: string[] = [];
+
+        if (t.type == "Item") {
+
+            const item = this.items().get(t.key);
+
+            if (item) {
+
+                const { source, calculateType } = item;
+                this.tryThrowLoop(t.key, parentKeys);
+    
+                const test = source?.map(tt => { 
+                    const aaa = this.c(calculateType, tt, [...parentKeys, t.key]);
+                    const { elements, result } = aaa;
+
+                    return [
+                        { calcType: calculateType, elements },
+                        ...result
+                    ];
+
+                }).flat() ?? [];
+
+                result.push(...test)
+
+                // console.log(test);
+                // elements.push(...itemSource.map(tt => this.b(tt, [...parentKeys, t.key])).flat());
+            }
+
+        }
+
+        if (t.type == "Element") elements.push(t.key);
+
+        // console.log(t, result);
+
+        // result.push({ calcType, elements });
+
+        return {
+            elements, 
+            result,
+        }
+    }
+
     /**
      * Targetの配列から各関連Elementのキーを二次元配列で返す
      * @param targets 
@@ -51,6 +124,7 @@ export class ItemStore {
         return result;
     }
 
+
     private b(t: Target, parentKeys: string[] = []) {
 
         const elements: string[] = [];
@@ -62,6 +136,8 @@ export class ItemStore {
         }
 
         if (t.type == "Element") elements.push(t.key);
+
+        // console.log(t, elements);
 
         return elements;
     }
