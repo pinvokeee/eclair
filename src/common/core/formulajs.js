@@ -1,5 +1,5 @@
 
-export class Formula {
+class FormulaJS {
 
     operator = [
         { op: "+", level: 2, joined: "left" },
@@ -15,14 +15,11 @@ export class Formula {
 
     eval(f) {
         const tokens = this.toTokenArray(f);
-        const rpn = this.toReversePolishNotation(tokens);
-
-
-
+        const rpn = this.toReversePolishNotationFromTokens(tokens);
         return rpn;
     }
 
-    toReversePolishNotation(tokens) {
+    toReversePolishNotationFromTokens(tokens) {
 
         const output = [];
         const stack = [];
@@ -152,10 +149,10 @@ export class Formula {
 
         if (buffer.length > 0) tokens.push(buffer.join(""));
 
-        console.log(tokens);
-
         return tokens;
     }
 
 
 }
+
+export default FormulaJS;

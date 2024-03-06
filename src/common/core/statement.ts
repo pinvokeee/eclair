@@ -47,8 +47,9 @@ export class Statement {
 
     getCalculatedSectionAll() {
 
-        const c = new Compute();
-        c.execute(this.store.items(), this.store.elements(), this.sections[0].values);
+        const c = new Compute(this.getItems(), this.store.elements());
+        c.execute(this.sections[0].values);
+        // c.execute(this.store.items(), this.store.elements(), this.sections[0].values);
 
         return this.sections.map((section, i) => ({ section, items: this.getCalculatedSection(i) }));
     }
