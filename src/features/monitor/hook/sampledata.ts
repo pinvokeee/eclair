@@ -10,6 +10,23 @@ export const itemData: Item[] = [
         formatLiteral: "0,0",
     },
 
+    {
+        key: "TEST1",
+        name: "COST",
+        category: "cost",
+        calculateType: "sum",
+        formulaText: "[COST_SV] + [COST_SV_ZA] + [COST_CM] + [YUKYU]",
+    },
+
+    {
+        key: "GP%",
+        name: "GP%",
+        category: "cost",
+        calculateType: "sum",
+        formulaText: "[TEST1] / [TS]",
+        formatLiteral: "0.00%",
+    }
+
     // {
     //     key: "COST",
     //     name: "COST",

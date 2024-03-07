@@ -1,4 +1,4 @@
-import { FormulaTS } from "./formula";
+import { FormulaTS, Token } from "./formula";
 import { ElementDicitonary, ElementValue, ItemDicitonary, Element } from "./types";
 
 type ComputedValues = {
@@ -9,10 +9,12 @@ export class Compute {
 
     private items: ItemDicitonary;
     private elements: ElementDicitonary;
+    private formulaParser: FormulaTS;
     
     constructor (items: ItemDicitonary, elements: ElementDicitonary) {
         this.items = items;
         this.elements = elements;
+        this.formulaParser = new FormulaTS();
     }
 
     private calcValue(element: Element, elementValue: ElementValue) {
@@ -24,41 +26,40 @@ export class Compute {
         return value;
     }
 
-    private getVariable(key: string) {
+    private hasVariableFromTokens(tokens: Token[]) {
+        return tokens.find(m => m.type == "VAR") != undefined;
     }
 
-    private calcElement(key: string, values: ElementValue[]) {
 
-        const el = this.elements.get(key);
+    private b(key: string, values: ComputedValues, items: ComputedValues): Token[] {
 
-        if (el) {
+        if (values[key]) return [{ token: `${values[key]}`, type: "NUM" }];
+        if (items[key]) return [{ token: `${items[key]}`, type: "NUM" }];
 
+        const item = this.items.get(key);
 
+        if (item) {
+            
+            const tokens = this.formulaParser.toReversePolishNotation(item.formulaText);
+            const v = this.a(tokens, values, items);
 
+            if (!this.hasVariableFromTokens(v)) {
+                items[key] = this.formulaParser.evalFromRPN(v);
+                return [{ token: `${items[key]}`, type: "NUM" }];   
+            }
         }
-
-        // return 
+    
+        return [{ token: "0", type: "NUM" }];
     }
 
-    private b(key: string, values: ComputedValues) {
+    private a(rpnTokens: Token[], values: ComputedValues, items: ComputedValues) {
 
-        if (values[key]) {
-            return [{ token: values[key], type: "NUM" }];
-        }
-
-        return [{ token: key, type: "NUM" }];
-
-        return [];
-    }
-
-    private a(rpnTokens: { token: string, type: "VAR" | "NUM" | "OPE" }[], values: ComputedValues) {
-
-        const newTokens = [];
+        const newTokens: Token[] = [];
 
         for (const token of rpnTokens) {
             
             if (token.type == "VAR") {
-                newTokens.push(...this.b(token.token, values));
+                newTokens.push(...this.b(token.token, values, items));
             }
             else {
                 newTokens.push(token);
@@ -88,15 +89,14 @@ export class Compute {
     execute(values: ElementValue[]) {
 
         const computedValues = this.preComputedElementValue(values);
-
-        console.log(values);
-
-        const f: FormulaTS = new FormulaTS();
+        const computedItems: ComputedValues = {};
 
         for (const [key, item] of this.items.entries()) {
-
-            console.log(this.a(f.toReversePolishNotation(item.formulaText), computedValues));
+            const a = this.a(this.formulaParser.toReversePolishNotation(item.formulaText), computedValues, computedItems);
+            computedItems[key] = this.formulaParser.evalFromRPN(a);
         }
+
+        console.log(computedItems);
 
     }
 

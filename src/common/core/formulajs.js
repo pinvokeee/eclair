@@ -13,6 +13,35 @@ class FormulaJS {
         return this.operator.find(o => o.op == str);
     }
 
+    evalFromRPN(rpnTokens) {
+        
+        const stack = [];
+
+        for (let i = 0; i < rpnTokens.length; i++) {
+            
+            const token = rpnTokens[i];
+
+            if (token.type == "NUM") {
+                stack.push(Number(token.token)); 
+
+            }else if (token.type == "OPE") {
+
+                const op = token.token;
+
+                    const t2 = stack.pop();
+                    const t1 = stack.pop();
+                    
+                    if (op == "+") stack.push(t1 + t2);
+                    if (op == "-") stack.push(t1 - t2);
+                    if (op == "*") stack.push(t1 * t2);
+                    if (op == "/") stack.push(t1 / t2);
+                
+            }
+        }
+
+        return Number(stack[0]) ?? 0;
+    }
+
     eval(f) {
         const tokens = this.toTokenArray(f);
         const rpn = this.toReversePolishNotationFromTokens(tokens);
@@ -154,5 +183,10 @@ class FormulaJS {
 
 
 }
+
+const a = new FormulaJS();
+const tokens = a.toTokenArray("3+4*2/(1-5)+20+30/2+5");
+const rpn = a.toReversePolishNotationFromTokens(tokens);
+console.log(a.evalFromRPN(rpn));
 
 export default FormulaJS;

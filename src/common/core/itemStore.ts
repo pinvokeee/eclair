@@ -33,7 +33,7 @@ export class ItemStore {
         const elementKeys = this.getCompositElementKeys(source);
         const elementKeys2 = this.getCompositElementKeys2(item.calculateType, source);
 
-        console.log(item.name, elementKeys2);
+        // console.log(item.name, elementKeys2);
 
 
         return elementKeys;

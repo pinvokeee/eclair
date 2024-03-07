@@ -1,6 +1,11 @@
 /*@ts-ignore*/
 import Formula from '../core/formulajs';
 
+export type Token = {
+    token: string,
+    type: "VAR" | "NUM" | "OPE",
+}
+
 export class FormulaTS {
 
     formula: Formula;
@@ -15,4 +20,7 @@ export class FormulaTS {
         return rpn;
     }
 
+    evalFromRPN(tokens: any): number {
+        return this.formula.evalFromRPN(tokens);
+    }
 }
