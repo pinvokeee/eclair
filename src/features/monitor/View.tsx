@@ -4,10 +4,12 @@ import { ValueEditor } from "../valueEdit/ValueEditor";
 import { useState } from "react";
 import "./View.css";
 import { Button, Drawer, Paper } from "@mui/material";
+import { ValueDialog } from "../valueDialog/ValueDialog";
 
 export const View = () => {
 
-    const { calculatedSections, items, elements, getSelected, onClickCell, onChange } = useView();
+    const { calculatedSections, items, elements, getSelected, onClickCell, onChange, isOpenValueEditDialog } = useView();
+    const isOpen = isOpenValueEditDialog;
 
     const summaryTableProps = {
         items: Array.from(items.values()),
@@ -23,9 +25,11 @@ export const View = () => {
     const key = (section && item) ? `${section.date}-${item.key}` : "";
 
     return <div className="Container">
-        <SummaryTable {...summaryTableProps}></SummaryTable>
+        <div className="InnerView">
+            <SummaryTable {...summaryTableProps}></SummaryTable>
+        </div>
         { (section && item) && <Paper square>
-            <ValueEditor {...{key, section, item, items, elements, sourceElements, onChange}}></ValueEditor>
+            <ValueDialog {...{isOpen, key, section, item, items, elements, sourceElements, onChange}}></ValueDialog>
         </Paper> }
     </div>
 }

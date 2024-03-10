@@ -96,8 +96,7 @@ export class Compute {
             computedItems[key] = this.formulaParser.evalFromRPN(a);
         }
 
-        console.log(computedItems);
-
+        return computedItems;
     }
 
     eval() {

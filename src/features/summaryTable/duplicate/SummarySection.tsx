@@ -1,5 +1,5 @@
 import numeral from "numeral";
-import { CalculatedSection, Section } from "../../common/core/types";
+import { CalculatedSection, Section } from "../../../common/core/types";
 import "./styles.css";
 import { Stack } from "@mui/material";
 
@@ -18,7 +18,11 @@ const createRows = (sourceSection: CalculatedSection, onClick: (section: Section
         const { formatLiteral, key } = target.item;
         const value = formatLiteral ? numeral(target.value).format(formatLiteral) : target.value;
 
-        return <div key={`${month}-${key}`} className="ValueCell" onClick={() => onClick(section, key)}>{value}</div>
+        return <div key={`${month}-${key}`} className="ValueCell" onClick={() => onClick(section, key)}>
+            <div className="Value">
+                {value}
+            </div>
+        </div>
     });
 }
 

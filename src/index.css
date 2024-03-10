@@ -1,34 +1,31 @@
 body {
-    font-family: "Roboto", "Noto Sans JP", sans-serif;
-    color: #213547;
+    /* font-family: "Roboto", "Noto Sans JP", sans-serif !important; */
+    /* color: #213547; */
 }
 
-input {
-    /* outline: solid 1px #213547; */
-    /* outline: solid 1px #213547; */
+/* input {
     padding: 10px;
     border-radius: 2px;
     font-family: inherit;
     border: gray solid 1px;
     font-size: 12pt;
-}
+} */
 
-select {
+/* select {
     padding: 10px;
     font-size: 12pt;
-}
+} */
 
-button {
+/* button {
     background-color: #213547;
     color: white;
     border: none;
     border-radius: 2px;
     padding: 8px 12px 8px 12px;
-    /* font-size: 12pt; */
     font-weight: bold;
     cursor: pointer;
-}
+} */
 
-button:hover {
+/* button:hover {
     background-color: #213547c2;
-}
+} */

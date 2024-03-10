@@ -5,7 +5,6 @@ export const itemData: Item[] = [
         key: "TS",
         name: "TS",
         category: "revenue",
-        calculateType: "sum",
         formulaText: "[SV1] + [SV2] + [LD1] + [LD2] + [CM1] + [CM2]",
         formatLiteral: "0,0",
     },
@@ -14,7 +13,6 @@ export const itemData: Item[] = [
         key: "TEST1",
         name: "COST",
         category: "cost",
-        calculateType: "sum",
         formulaText: "[COST_SV] + [COST_SV_ZA] + [COST_CM] + [YUKYU]",
     },
 
@@ -22,7 +20,6 @@ export const itemData: Item[] = [
         key: "GP%",
         name: "GP%",
         category: "cost",
-        calculateType: "sum",
         formulaText: "[TEST1] / [TS]",
         formatLiteral: "0.00%",
     }
@@ -359,78 +356,78 @@ export const projectData: Section[] = [
         ]
     },
 
-    // {
-    //     date: new Date("2024/4/1").getTime(),
-    //     values: [
-    //     ]
-    // },
+    {
+        date: new Date("2024/4/1").getTime(),
+        values: [
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/5/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2024/5/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/6/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2024/6/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/7/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2024/7/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/8/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2024/8/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/9/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2024/9/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/10/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2024/10/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/11/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2024/11/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2024/12/1").getTime(),
-    //     values: [
-    //     ]
-    // },
+    {
+        date: new Date("2024/12/1").getTime(),
+        values: [
+        ]
+    },
 
-    // {
-    //     date: new Date("2025/01/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2025/01/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 
-    // {
-    //     date: new Date("2025/02/1").getTime(),
-    //     values: [
-    //         ...valuesData2
-    //     ]
-    // },
+    {
+        date: new Date("2025/02/1").getTime(),
+        values: [
+            ...valuesData2
+        ]
+    },
 ]

@@ -1,5 +1,5 @@
 import Stack from "@mui/material/Stack";
-import { CalculatedSection, Section } from "../../common/core/types";
+import { CalculatedSection, Section } from "../../../common/core/types";
 import { SummarySection } from "./SummarySection";
 
 type Props = {

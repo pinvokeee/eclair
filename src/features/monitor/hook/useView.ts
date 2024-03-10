@@ -20,13 +20,16 @@ export const useView = () => {
         sourceElements: Element[] 
     } | undefined>(undefined);
 
+    const isOpenValueEditDialog = selectedSectionValueSet != undefined;
+
     const onClickCell = (section: Section, itemKey: string) => {
 
         const item = items.get(itemKey);
 
         if (item) {
-            const sourceElements: Element[] = statement.getSourceElements(item).flat();
-            setSelected({section, item, sourceElements});
+            console.log(section, item);
+            // const sourceElements: Element[] = statement.getSourceElements(item).flat();
+            // setSelected({section, item, sourceElements});
         }
     }
 
@@ -47,6 +50,7 @@ export const useView = () => {
         onClickCell,
         onChange,
         getSelected,
+        isOpenValueEditDialog
     }
 }
 

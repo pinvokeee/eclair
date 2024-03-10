@@ -1,69 +1,35 @@
-.Cell {
-    padding: 6px;
-    min-width: 60px;
-    text-align: right;
-    cursor: default;
-    background-color: white;
+.ItemNameCellContainer {
+    padding: 0  !important;
+    position: sticky;
+    left: 0;
+    background-color: #ffffff;    
+    padding: 8px  !important;
+}
+
+.ValueCellContainer {
+    /* padding: 0  !important; */
+    background-color: white;    
+    padding: 8px  !important;
+}
+
+.NameCell {
+    padding: 16px;
 }
 
 .ValueCell {
-    padding: 6px;
-    width: 120px;
-    text-align: right;
-    cursor: default;
+    padding: 16px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .ValueCell:hover {
-    background-color: blue;
+    background-color: #c7e7ff;
 }
 
-.MonthCaption {
-    padding: 6px;
-    width: 120px;
-    text-align: center;
-    cursor: default;
-    position: sticky;
-    top: 0;
-    background-color: white;
+.ValueModal {
+    padding: 8px;
 }
 
-.ItemNameCaption {
-    position: sticky;
-    left: 0;
-    top: 0;
+.ValueModalContent {
+    padding: 16px;
 }
-
-.ItemNameColumn {
-    position: sticky;
-    left: 0;
-    background-color: white;
-    z-index: 1;
-}
-
-.TableContainer {
-    /* display: grid;
-    grid-template-columns: auto 1fr; */
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-}
-
-
-
-.BodyContainer {
-    /* display: grid; */
-    /* grid-template-rows: auto 1fr; */
-}
-
-.TableBody {
-}
-
-/* .TableContainer {
-    overflow-x: auto;
-}
-
-.TableBody {
-    height: 100%;
-    overflow-y: auto;
-} */
-

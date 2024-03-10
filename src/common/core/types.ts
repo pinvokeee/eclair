@@ -113,15 +113,13 @@ export type Item = {
     category: Category,
 
     /**
-     * 計算種別（合算、差分、比率
-     */
-    calculateType: CalculateType,
-
-    /**
      * 書式
      */
     formatLiteral?: string,
 
+    /**
+     * 計算式
+     */
     formulaText: string,
     
     /**
