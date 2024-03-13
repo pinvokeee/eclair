@@ -5,7 +5,7 @@ import "./styles.css";
 import { SummarySection } from "./duplicate/SummarySection";
 import { TableItemNames } from "./duplicate/TableItemNames";
 import { SectionColmuns } from "./duplicate/SectionColmuns";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { EditModal } from "./EditModal";
 
 type Props = {
@@ -19,21 +19,45 @@ export const SummaryTable = (props: Props) => {
     const { calculatedSections, items, headers, firstColumn, body } = useSummaryTable({ ...props });
     const { onClickCell } = props;
 
-    const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
+    const tableRef = useRef<HTMLDivElement>(null);
+
+    const [selectedItem, setSelectedItem] = useState<{
+        item: Item,
+        section: Section
+    } | undefined>();
+
+    const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
+    const [isShowValueDialog, setIsShowValueDialog] = useState(false);
+
     const isOpen = anchorEl != undefined;
+    // const isOpen = isShowValueDialog;
     
+    useEffect(() => {
+        // tableRef.current?.removeEventListener("scrollend", onScrollEnd);
+        // tableRef.current?.addEventListener("scrollend", onScrollEnd);
+
+    }, [anchorEl]);
+
+    const onScrollEnd = () => {
+        // if (anchorEl) setIsShowValueDialog(true);
+    }
+
     const handleClickCell = (element: any, item: Item, section?: Section) => {
-        setAnchorEl(element);
+        
+        setAnchorEl(element);        
+        if (section) setSelectedItem({ item, section });
+
+        // element.scrollIntoView({  behavior: "smooth", inline: "center" });
     }
 
     const onCancel = () => {
         setAnchorEl(null);
+        // setIsShowValueDialog(false);
     }
 
     return <>
-        <TableContainer>
+        <TableContainer ref={tableRef}>
             <Table>
-
                 <TableHead>
                     <TableRow>
                         { headers.map((head, index) => 
@@ -58,7 +82,7 @@ export const SummaryTable = (props: Props) => {
             </Table>
         </TableContainer>
 
-        <EditModal {...{isOpen, element: anchorEl, onCancel}} ></EditModal>
+        <EditModal {...{item: selectedItem?.item, section: selectedItem?.section, isOpen, element: anchorEl, onCancel}} ></EditModal>
 
     </>
 }

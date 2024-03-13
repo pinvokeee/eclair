@@ -1,3 +1,4 @@
+import { common } from "@mui/material/colors";
 
 class FormulaJS {
 
@@ -46,6 +47,11 @@ class FormulaJS {
         const tokens = this.toTokenArray(f);
         const rpn = this.toReversePolishNotationFromTokens(tokens);
         return rpn;
+    }
+
+    getVariables(f) {
+        const rpn = this.eval(f);
+        return rpn.filter(t => t.type == "VAR");
     }
 
     toReversePolishNotationFromTokens(tokens) {
@@ -188,5 +194,6 @@ const a = new FormulaJS();
 const tokens = a.toTokenArray("3+4*2/(1-5)+20+30/2+5");
 const rpn = a.toReversePolishNotationFromTokens(tokens);
 console.log(a.evalFromRPN(rpn));
+console.log(a.getVariables("3 + 4 * 4 / [OP] + 2 * [LIST]"));
 
 export default FormulaJS;
